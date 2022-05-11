@@ -288,7 +288,7 @@ def mult(a, b=None):
 #  Using the algorithm of Figure 3-6, write a
 # function that satisfies the specification
 
-def log(x, base=int, epsilon):
+def log(x, epsilon, base=int):
     """Assumes x and epsilon int or float, base an int,
     x > 1, epsilon > 0 & power >= 1
     Returns float y such that base**y is within epsilon
@@ -330,4 +330,57 @@ def find_last(s, sub):
 # a tuple of numbers. Use the function sum.
 
 def mean(tup=tuple):
-    return sum(tup)/len(tup)
+    return sum(tup) / len(tup)
+
+
+# : What does the following code print?
+def finger():
+    L = [1, 2, 3]
+    L.append(L)
+    return print(L is L[-1])
+
+
+def append_val(val, list_1=[]):
+    if list_1: list_1 = []  # if this is omitted list won't be empty in the next calls
+    list_1.append(val)
+    return print(list_1)
+
+
+# Finger exercise: Write a list comprehension that generates all
+# non-primes between 2 and 100.
+
+prime_100 = [x for x in range(2, 100) if all(x % y != 0 for y in range(3, x))]
+
+
+def prime_list(n):
+    return [x for x in range(3, n, 2) if not [a for a in range(2, x) if x % a == 0]]
+
+
+# Finger exercise: Implement a function satisfying the following
+# specification. Hint: it will be convenient to use lambda in the body of
+# the implementation.
+
+
+def power_l1_l2(l1, l2):
+    """l1, l2 lists of same length of numbers
+    returns the sum of raising each element in l1
+    to the power of the element at the same index in L2
+    For example, f([1,2], [2,3]) returns 9"""
+    return sum(map(lambda x,y: x**y, l1, l2))
+
+
+# Finger exercise: Implement a function that meets the specification
+
+def get_min(d=dict):
+    """d a dict mapping letters to ints
+    returns the value in d with the key that occurs first in the alphabet.
+    E.g., if d = {x = 11, b = 12}, get_min returns 12."""
+    return d[(min(d.keys()))]
+
+
+# Finger exercise: The harmonic sum of an integer, n > 0, can be
+# calculated using the formula . Write a recursive function
+# that computes this.
+
+def harmonic(n=int):
+    return 1/n + harmonic(n-1) if n != 1 else n/n
