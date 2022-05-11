@@ -384,3 +384,18 @@ def get_min(d=dict):
 
 def harmonic(n=int):
     return 1/n + harmonic(n-1) if n != 1 else n/n
+
+def fib(n):
+    """assumes  int >= 0
+    returns Fibonacci of n"""
+    return 1 if n == 0 or n == 1 else  fib(n-1) + fib(n-2)
+
+def test_fib(n):
+    for i in range(n+1):
+        print(f"fib of {i} is {fib(i)}")
+
+
+#  When the implementation of fib in Figure 6-3 is
+# used to compute fib(5), how many times does it compute the value
+# of fib(2) on the way to computing fib(5)?
+# 4 times
