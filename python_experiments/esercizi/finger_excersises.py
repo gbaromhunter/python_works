@@ -2,6 +2,7 @@
 # x, y, and z—and prints the largest odd number among them. If none
 # of them are odd, it should print the smallest value of the three.
 import random
+import calendar as cal
 
 
 def ex0(x, y, z):
@@ -366,7 +367,7 @@ def power_l1_l2(l1, l2):
     returns the sum of raising each element in l1
     to the power of the element at the same index in L2
     For example, f([1,2], [2,3]) returns 9"""
-    return sum(map(lambda x,y: x**y, l1, l2))
+    return sum(map(lambda x, y: x ** y, l1, l2))
 
 
 # Finger exercise: Implement a function that meets the specification
@@ -383,19 +384,44 @@ def get_min(d=dict):
 # that computes this.
 
 def harmonic(n=int):
-    return 1/n + harmonic(n-1) if n != 1 else n/n
+    return 1 / n + harmonic(n - 1) if n != 1 else n / n
+
 
 def fib(n):
     """assumes  int >= 0
     returns Fibonacci of n"""
-    return 1 if n == 0 or n == 1 else  fib(n-1) + fib(n-2)
+    return 1 if n == 0 or n == 1 else fib(n - 1) + fib(n - 2)
+
 
 def test_fib(n):
-    for i in range(n+1):
+    for i in range(n + 1):
         print(f"fib of {i} is {fib(i)}")
 
 
-#  When the implementation of fib in Figure 6-3 is
+# When the implementation of fib in Figure 6-3 is
 # used to compute fib(5), how many times does it compute the value
 # of fib(2) on the way to computing fib(5)?
+
 # 4 times
+
+def find_thanksgiving(year):
+    month = cal.monthcalendar(year, 11)
+    if month[0][cal.THURSDAY] != 0:
+        thanksgiving = month[3][cal.THURSDAY]
+    else:
+        thanksgiving = month[4][cal.THURSDAY]
+    return thanksgiving
+
+
+# Finger exercise: Write a function that meets the specification
+
+def shopping_days(year):
+    """year a number >= 1941, returns the number of days between U.S. Thanksgiving and Christmas in year"""
+    return (30 - find_thanksgiving(year)) + 25
+
+
+
+# Finger exercise: Since 1958, Canadian Thanksgiving has occurred
+# on the second Monday in October. Write a function that takes a year
+# (>1957) as a parameter, and returns the number of days between
+# Canadian Thanksgiving and Christmas.
